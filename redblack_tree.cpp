@@ -7,12 +7,14 @@
 using namespace std;
 
 void rbTree::insert(string name, int index){
+    if(findHelper(name) != NULL)
+        return;
     rNode *ptr = new rNode(name, index);
     root = rbinsert(root, ptr);
     fixViolation(root, ptr);
 }
 
-void rbTree::fixViolation(rNode *&root, rNode *& ptr){
+void rbTree::fixViolation(rNode *&root, rNode *&ptr){
     rNode *parent_ptr = NULL;
     rNode *grand_p_ptr = NULL;
     while((ptr != root) && (ptr->color != BLACK) && (ptr->parent->color == RED))
@@ -29,7 +31,6 @@ void rbTree::fixViolation(rNode *&root, rNode *& ptr){
                 uncle_ptr->color = BLACK;
                 ptr = grand_p_ptr;
             }
-  
             else
             {
                 if(ptr == parent_ptr->right)
@@ -93,7 +94,6 @@ void rbTree::rotateLeft(rNode *&root, rNode *&ptr)
     ptr_right->parent = ptr->parent;
     if(ptr->parent == NULL)
         root = ptr_right;
-  
     else if(ptr == ptr->parent->left)
         ptr->parent->left = ptr_right;
     else
@@ -111,7 +111,7 @@ void rbTree::rotateRight(rNode *&root, rNode *&ptr)
     ptr_left->parent = ptr->parent;
     if (ptr->parent == NULL)
         root = ptr_left;
-    else if (ptr == ptr->parent->left)
+    else if(ptr == ptr->parent->left)
         ptr->parent->left = ptr_left;
     else
         ptr->parent->right = ptr_left;
@@ -121,16 +121,29 @@ void rbTree::rotateRight(rNode *&root, rNode *&ptr)
 
 string rbTree::ListFriendsInfo(string name){
     rNode *list = findHelper(name);
+    if(list == NULL)
+        return "";
     string output = "";
     while(list->friends != NULL){
         output += list->friends->name;
+        output += " ";
         list->friends = list->friends->next;
     }
     return output;
 }
 
-string rbTree::ListInfo(string lown, string upn){
-    return "";
+void rbTree::ListInfo(string lown, string upn){
+    return ListInfoHelper(lown, upn, root);
+}
+
+void rbTree::ListInfoHelper(string lown, string upn, rNode *root){
+    if (root == NULL)
+        return;
+    ListInfoHelper(lown, upn, root->left);
+    if(strcmp(root->name.c_str(), lown.c_str()) >= 0 && strcmp(root->name.c_str(), upn.c_str()) <= 0){
+        cout<<root->name<< " ";
+    }
+    ListInfoHelper(lown, upn, root->right);
 }
 
 rNode* rbTree::findHelper(string name){
@@ -139,15 +152,13 @@ rNode* rbTree::findHelper(string name){
 
 rNode* rbTree::find(rNode *root, string name){
     if(root == NULL)
-        return nullptr;
+        return NULL;
     if(strcmp(name.c_str(), root->name.c_str()) == 0)
         return root;
     else if (strcmp(name.c_str(), root->name.c_str()) < 0)
         return find(root->left, name);
-    else if (strcmp(name.c_str(), root->name.c_str()) > 0)
+    else
         return find(root->right, name);
-    else 
-        return nullptr;
 }
 
 void rbTree::printHelper(rNode *root){

@@ -41,12 +41,14 @@ class rbTree{
     public: 
         rbTree() {root = NULL;}; 
         void insert(string name, int index); //inserts new node into red black tree
-        void fixViolation(rNode *&root, rNode *& ptr);
-        void rotateLeft(rNode *&root, rNode *& ptr);
-        void rotateRight(rNode *&root, rNode *& ptr);
+        void addFriend(string name1, string name2);
+        void fixViolation(rNode *&root, rNode *&ptr);
+        void rotateLeft(rNode *&root, rNode *&ptr);
+        void rotateRight(rNode *&root, rNode *&ptr);
         rNode* rbinsert(rNode *root, rNode *ptr); //inserts new node into red black tree
         string ListFriendsInfo(string name); //lists the name, age, occupation of name's friends
-        string ListInfo(string lown, string upn); //lists name, age, occupation of all names between lown and upn inclusive
+        void ListInfoHelper(string lown, string upn, rNode *root);
+        void ListInfo(string lown, string upn); //lists name, age, occupation of all names between lown and upn inclusive
         rNode* findHelper(string name);
         rNode* find(rNode *root, string name);
         void printHelper(rNode *root);
