@@ -139,11 +139,15 @@ void rbTree::ListInfo(string lown, string upn){
 void rbTree::ListInfoHelper(string lown, string upn, rNode *root){
     if (root == NULL)
         return;
-    ListInfoHelper(lown, upn, root->left);
+    if (strcmp(root->name.c_str(), lown.c_str()) > 0){
+        ListInfoHelper(lown, upn, root->left);
+    }
     if(strcmp(root->name.c_str(), lown.c_str()) >= 0 && strcmp(root->name.c_str(), upn.c_str()) <= 0){
         cout<<root->name<< " ";
     }
-    ListInfoHelper(lown, upn, root->right);
+    if (strcmp(root->name.c_str(), upn.c_str()) < 0){
+        ListInfoHelper(lown, upn, root->right);
+    }
 }
 
 rNode* rbTree::findHelper(string name){
