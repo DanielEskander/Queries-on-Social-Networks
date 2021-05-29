@@ -14,9 +14,9 @@ int main(){
     tree.insert("Cuz", 1);
     tree.addFriend("Dob", "Ben");
     tree.addFriend("Dave", "Fre");
-    tree.ListFriendsInfo("Dave");
+    //tree.ListFriendsInfo("Dave");
     //tree.ListInfo("Adam", "Dave");
-    //tree.printAll();
-    //cout<<'\n';
+    tree.printAll();
+    cout<<'\n';
     return 0;
 }

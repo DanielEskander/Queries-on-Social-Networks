@@ -166,7 +166,12 @@ void rbTree::printHelper(rNode *root){
     if (root == NULL)
         return;
     printHelper(root->left);
-    cout << root->name << "  ";
+    cout << root->name << "  " << root->color << " ";
+    if(root->left != NULL)
+        cout << root->left->name << " ";
+    if(root->right != NULL)
+        cout << root->right->name << " ";
+    cout << "\n";
     printHelper(root->right);
 }
 
