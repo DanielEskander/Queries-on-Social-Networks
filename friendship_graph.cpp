@@ -45,7 +45,7 @@ void rbTree::addFriend(string name1, string name2){
         Node *lastNode2 = add2->friends;
         while(lastNode2->next != NULL)
         {
-            if (strcmp(lastNode2->name.c_str(), name2.c_str()) == 0)
+            if (strcmp(lastNode2->name.c_str(), name1.c_str()) == 0)
             {
                 break;
             }
