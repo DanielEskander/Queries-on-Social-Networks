@@ -11,11 +11,12 @@ using namespace std;
 
 
 void rbTree::printRecord(int index){
+    string name, age, occupation;
     char *buffer= new char[20];
     char *buffer2 = new char[3];
     char *buffer3 = new char[30];
     ifstream output;
-    output.open("ProfileData.txt", ios::binary);
+    output.open("ProfileData.txt", ios::app);
     output.seekg(index*54);
     output.read(buffer, 20);
     output.seekg(index*54 + 20);
@@ -23,9 +24,21 @@ void rbTree::printRecord(int index){
     output.seekg(index*54 + 23);
     output.read(buffer3, 30);
     output.close();
-    cout<< buffer << ",";
-    cout<< buffer2 << ",";
-    cout<< buffer3;
+    for(int i = 0; i < 20; i++){
+        if(buffer[i] != ' ')
+            name += buffer[i];
+    }
+    for(int j = 0; j < 3; j++){
+        if(buffer2[j] != ' ')
+            age += buffer2[j];
+    }
+    for(int k = 0; k < 30; k++){
+        if(buffer3[k] != ' ')
+            occupation += buffer3[k];
+    }
+    cout<< name << ",";
+    cout<< age << ",";
+    cout<< occupation;
 
     delete[] buffer;
     delete[] buffer2;

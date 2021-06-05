@@ -72,54 +72,46 @@ int main(int argc, char *argv[]){
     };
     input.close();
     output.close();
-    // INITIALIZE END
 
     while (choice != 7) {
 
-        cout << "Welcome to FriendBook! Please select an action." << endl;
+        cout << "Welcome to FriendNet! Please choose an option." << endl;
         cout << "1) Add a new user" << endl;
-        cout << "2) Add a friendship" << endl;
-        cout << "3) Get a user's friends' profiles" << endl;
+        cout << "2) Create a friendship" << endl;
+        cout << "3) Get a user's and their friends' profiles" << endl;
         cout << "4) Get a range of user profiles" << endl;
-        cout << "5) Print the entire net" << endl;
-        cout << "6) Exit FriendBook" << endl;
+        cout << "5) Print the entire network of friends" << endl;
+        cout << "6) Exit FriendNet" << endl;
 
         cin >> choice;
 
         if(choice == 1) {
-            // char temp[21];
-            // char temp2[4];
-            // char temp3[31];
-            // cout << "Enter new user's name:" << endl;
-            // cin >> temp;
-            // cout << "Enter new user's age:" << endl;
-            // cin >> temp2;
-            // cout << "Enter new user's occupation:" << endl;
-            // cin >> temp3;
             string s;
-            char name[20];
-            char age[3];
-            char occupation[30];
-            char temp[21];
+            char name[20] = "";
+            char age[3] = "";
+            char occupation[30] = "";
+            char temp1[21];
             char temp2[4];
             char temp3[31];
             cout << "Enter the user's name: " << endl;
-            cin >> temp, s;
-            strncpy(name, temp, 20);
+            cin >> temp1, s;
+            strncpy(name, temp1, 20);
+            temp1[0] = '\0';
             cout << "Enter the user's age: " << endl;
             cin >> temp2;
             strncpy(age, temp2, 3);
+            temp2[0] = '\0';
             cout << "Enter the user's occupation: " << endl;
             cin >> temp3;
             strncpy(occupation, temp3, 30);
     
-            ofstream outfile("ProfileData.txt", std::ios::app);
-            outfile << setfill(' ') << left
+            output.open("ProfileData.txt", ofstream::app);
+            output << setfill(' ') << left
                 << setw(20) << name
                 << setw(3) << age 
                 << setw(30) << occupation
                 << endl;
-            outfile.close();
+            output.close();
             net.insert(name, index++);
         }
 
@@ -152,12 +144,12 @@ int main(int argc, char *argv[]){
         }
 
         else if(choice == 6) {
-            cout << "Thank you for using FriendBook. Goodbye." << endl;
+            cout << "Thank you for using FriendNet. Goodbye." << endl;
             break;
         }
 
         else {
-            cout << "Command not recognized. Please enter a number between 1 and 6." << endl;
+            cout << "Invalid option. Please enter a number between 1 and 6." << endl;
         }
     }
     return 0;
