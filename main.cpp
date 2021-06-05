@@ -43,33 +43,33 @@ int main(int argc, char *argv[]){
     string name2;
 
     rbTree net;
-
+    output.open("ProfileData.txt");
+    output.close();
     input.open(argv[1]);
-    output.open("/ProfileData.txt", ofstream::app);
+    output.open("ProfileData.txt", ofstream::app);
+    string line = "";
+    while(getline(input, line)) {
+        stringstream linestream(line);
+        string value;
+        getline(linestream,value,',');
+        name = value;
+        output << setw(20) << left << value;
+        getline(linestream,value,',');
+        output << setw(3) << left << value;
+        getline(linestream,value,',');
+        output << setw(30) << left << value;
+        output << endl;
 
-    // string line = "";
-    // while(getline(input, line)) {
-    //     stringstream linestream(line);
-    //     string value;
-    //     getline(linestream,value,',');
-    //     name = value;
-    //     output << setw(20) << left << value;
-    //     getline(linestream,value,',');
-    //     output << setw(3) << left << value;
-    //     getline(linestream,value,',');
-    //     output << setw(20) << left << value;
-    //     output << endl;
-
-    //     net.insert(name, index++);
-    //     do {
-    //         getline(linestream,value,',');
-    //         name2 = value;
-    //         if(name2 == "") {
-    //             break;
-    //         }
-    //         net.addFriend(name, name2);
-    //     } while (name2 != "");
-    // };
+        net.insert(name, index++);
+        do {
+            getline(linestream,value,',');
+            name2 = value;
+            if(name2 == "") {
+                break;
+            }
+            net.addFriend(name, name2);
+        } while (name2 != "");
+    };
     input.close();
     output.close();
     // INITIALIZE END
@@ -87,14 +87,39 @@ int main(int argc, char *argv[]){
         cin >> choice;
 
         if(choice == 1) {
-
-            cout << "Enter new user's name:" << endl;
-            cin >> name;
-            cout << "Enter new user's age:" << endl;
-            cin >> age;
-            cout << "Enter new user's occupation:" << endl;
-            cin >> occupation;
-            net.addRecord(name, age, occupation);
+            // char temp[21];
+            // char temp2[4];
+            // char temp3[31];
+            // cout << "Enter new user's name:" << endl;
+            // cin >> temp;
+            // cout << "Enter new user's age:" << endl;
+            // cin >> temp2;
+            // cout << "Enter new user's occupation:" << endl;
+            // cin >> temp3;
+            string s;
+            char name[20];
+            char age[3];
+            char occupation[30];
+            char temp[21];
+            char temp2[4];
+            char temp3[31];
+            cout << "Enter the user's name: " << endl;
+            cin >> temp, s;
+            strncpy(name, temp, 20);
+            cout << "Enter the user's age: " << endl;
+            cin >> temp2;
+            strncpy(age, temp2, 3);
+            cout << "Enter the user's occupation: " << endl;
+            cin >> temp3;
+            strncpy(occupation, temp3, 30);
+    
+            ofstream outfile("ProfileData.txt", std::ios::app);
+            outfile << setfill(' ') << left
+                << setw(20) << name
+                << setw(3) << age 
+                << setw(30) << occupation
+                << endl;
+            outfile.close();
             net.insert(name, index++);
         }
 
@@ -104,7 +129,6 @@ int main(int argc, char *argv[]){
             cin >> name;
             cout << "Enter the second user's name:" << endl;
             cin >> name2;
-
             net.addFriend(name, name2);
 
         }
@@ -112,7 +136,6 @@ int main(int argc, char *argv[]){
         else if(choice == 3) {
             cout << "Enter user's name for search:" << endl;
             cin >> name;
-
             net.ListFriendsInfo(name);
         }
 

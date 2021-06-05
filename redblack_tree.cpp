@@ -119,21 +119,19 @@ void rbTree::rotateRight(rNode *&root, rNode *&ptr)
     ptr->parent = ptr_left;
 }
 
-string rbTree::ListFriendsInfo(string name){
+void rbTree::ListFriendsInfo(string name){
     rNode *list = findHelper(name);
     if(list == NULL)
-        return "";
-    string output = "";
+        return;
     while(list->friends != NULL){
-        output += printRecord(findHelper(list->friends->name)->index);
-        output += "\n";
+        printRecord(findHelper(list->friends->name)->index);
+        cout << "\n";
         list->friends = list->friends->next;
     }
-    return output;
 }
 
 void rbTree::ListInfo(string lown, string upn){
-    return ListInfoHelper(lown, upn, root);
+    ListInfoHelper(lown, upn, root);
 }
 
 void rbTree::ListInfoHelper(string lown, string upn, rNode *root){
@@ -143,7 +141,8 @@ void rbTree::ListInfoHelper(string lown, string upn, rNode *root){
         ListInfoHelper(lown, upn, root->left);
     }
     if(strcmp(root->name.c_str(), lown.c_str()) >= 0 && strcmp(root->name.c_str(), upn.c_str()) <= 0){
-        cout<<printRecord(root->index);
+        printRecord(root->index);
+        cout<<"\n";
     }
     if (strcmp(root->name.c_str(), upn.c_str()) < 0){
         ListInfoHelper(lown, upn, root->right);
@@ -166,15 +165,14 @@ rNode* rbTree::find(rNode *root, string name){
 }
 
 void rbTree::printHelper(rNode *root){
-    //Mary,21,Developer,Jane,Alex,Ben
     if (root == NULL)
         return;
     printHelper(root->left);
-    cout << printRecord(root->index);
-    if(root->left != NULL)
-        cout << printRecord(root->left->index) << " ";
-    if(root->right != NULL)
-        cout << printRecord(root->right->index) << " ";
+    printRecord(root->index);
+    // if(root->left != NULL)
+    //     printRecord(root->left->index);
+    // if(root->right != NULL)
+    //     printRecord(root->right->index);
     cout << "\n";
     printHelper(root->right);
 }
