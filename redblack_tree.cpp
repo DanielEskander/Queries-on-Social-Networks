@@ -125,8 +125,8 @@ string rbTree::ListFriendsInfo(string name){
         return "";
     string output = "";
     while(list->friends != NULL){
-        output += list->friends->name;
-        output += " ";
+        output += printRecord(findHelper(list->friends->name)->index);
+        output += "\n";
         list->friends = list->friends->next;
     }
     return output;
@@ -143,7 +143,7 @@ void rbTree::ListInfoHelper(string lown, string upn, rNode *root){
         ListInfoHelper(lown, upn, root->left);
     }
     if(strcmp(root->name.c_str(), lown.c_str()) >= 0 && strcmp(root->name.c_str(), upn.c_str()) <= 0){
-        cout<<root->name<< " ";
+        cout<<printRecord(root->index);
     }
     if (strcmp(root->name.c_str(), upn.c_str()) < 0){
         ListInfoHelper(lown, upn, root->right);
@@ -170,11 +170,11 @@ void rbTree::printHelper(rNode *root){
     if (root == NULL)
         return;
     printHelper(root->left);
-    cout << root->name << "  " << root->color << " ";
+    cout << printRecord(root->index);
     if(root->left != NULL)
-        cout << root->left->name << " ";
+        cout << printRecord(root->left->index) << " ";
     if(root->right != NULL)
-        cout << root->right->name << " ";
+        cout << printRecord(root->right->index) << " ";
     cout << "\n";
     printHelper(root->right);
 }
@@ -182,5 +182,7 @@ void rbTree::printHelper(rNode *root){
 void rbTree::printAll(){
     printHelper(this->root);
 }
+
+
 
 
