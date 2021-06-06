@@ -25,15 +25,15 @@ void rbTree::printRecord(int index){
     output.read(buffer3, 30);
     output.close();
     for(int i = 0; i < 20; i++){
-        if(buffer[i] != ' ')
+        if(buffer[i] != '\0')
             name += buffer[i];
     }
     for(int j = 0; j < 3; j++){
-        if(buffer2[j] != ' ')
+        if(buffer2[j] != '\0')
             age += buffer2[j];
     }
     for(int k = 0; k < 30; k++){
-        if(buffer3[k] != ' ')
+        if(buffer3[k] != '\0')
             occupation += buffer3[k];
     }
     cout<< name << ",";

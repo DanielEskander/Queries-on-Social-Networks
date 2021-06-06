@@ -119,6 +119,13 @@ void rbTree::rotateRight(rNode *&root, rNode *&ptr)
     ptr->parent = ptr_left;
 }
 
+void rbTree::ListUserInfo(string name){
+    rNode *list = findHelper(name);
+    if(list == NULL)
+        return;
+    printRecord(list->index);
+}
+
 void rbTree::ListFriendsInfo(string name){
     rNode *list = findHelper(name);
     if(list == NULL)
@@ -154,8 +161,9 @@ rNode* rbTree::findHelper(string name){
 }
 
 rNode* rbTree::find(rNode *root, string name){
-    if(root == NULL)
+    if(root == NULL){
         return NULL;
+    }
     if(strcmp(name.c_str(), root->name.c_str()) == 0)
         return root;
     else if (strcmp(name.c_str(), root->name.c_str()) < 0)

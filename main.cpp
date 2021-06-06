@@ -61,27 +61,28 @@ int main(int argc, char *argv[]){
         output << endl;
 
         net.insert(name, index++);
-        do {
-            getline(linestream,value,',');
-            name2 = value;
-            if(name2 == "") {
-                break;
-            }
+        getline(linestream,value, '\"');
+        stringstream friends(value);
+        string add;
+        while(add != ""){
+            getline(friends,add,',');
+            name2 = add;
             net.addFriend(name, name2);
-        } while (name2 != "");
+        }
+        getline(linestream,value, '\"');
     };
     input.close();
     output.close();
 
     while (choice != 7) {
-
         cout << "Welcome to FriendNet! Please choose an option." << endl;
         cout << "1) Add a new user" << endl;
         cout << "2) Create a friendship" << endl;
-        cout << "3) Get a user's and their friends' profiles" << endl;
-        cout << "4) Get a range of user profiles" << endl;
-        cout << "5) Print the entire network of friends" << endl;
-        cout << "6) Exit FriendNet" << endl;
+        cout << "3) Get a user's profile" << endl;
+        cout << "4) Get a user's friends' profiles" << endl;
+        cout << "5) Get a range of user profiles" << endl;
+        cout << "6) Print the entire network of friends" << endl;
+        cout << "7) Exit FriendNet" << endl;
 
         cin >> choice;
 
@@ -94,13 +95,16 @@ int main(int argc, char *argv[]){
             char temp2[4];
             char temp3[31];
             cout << "Enter the user's name: " << endl;
-            cin >> temp1, s;
+            getline(cin, s);
+            for(int i = 0; i < s.length(); i++){
+                temp1[i] = s[i];
+            }
             strncpy(name, temp1, 20);
-            temp1[0] = '\0';
+            temp1[0] = '\0';                    //please explain
             cout << "Enter the user's age: " << endl;
             cin >> temp2;
             strncpy(age, temp2, 3);
-            temp2[0] = '\0';
+            temp2[0] = '\0';                    //please explain
             cout << "Enter the user's occupation: " << endl;
             cin >> temp3;
             strncpy(occupation, temp3, 30);
@@ -114,42 +118,41 @@ int main(int argc, char *argv[]){
             output.close();
             net.insert(name, index++);
         }
-
         else if(choice == 2) {
 
             cout << "Enter the first user's name:" << endl;
-            cin >> name;
+            getline(cin, name);
             cout << "Enter the second user's name:" << endl;
-            cin >> name2;
+            getline(cin, name2);
             net.addFriend(name, name2);
 
         }
-
         else if(choice == 3) {
             cout << "Enter user's name for search:" << endl;
-            cin >> name;
+            getline(cin, name);
+            net.ListUserInfo(name);
+        }
+        else if(choice == 4) {
+            cout << "Enter user's name for search:" << endl;
+            getline(cin, name);
             net.ListFriendsInfo(name);
         }
-
-        else if(choice == 4) {
+        else if(choice == 5) {
             cout << "Enter start name for range search:" << endl;
-            cin >> name;
+            getline(cin, name);
             cout << "Enter stop name for range search:" << endl;
-            cin >> name2;
+            getline(cin, name2);
             net.ListInfo(name, name2);
         }
-
-        else if(choice == 5) {
+        else if(choice == 6) {
             net.printAll();
         }
-
-        else if(choice == 6) {
+        else if(choice == 7) {
             cout << "Thank you for using FriendNet. Goodbye." << endl;
             break;
         }
-
         else {
-            cout << "Invalid option. Please enter a number between 1 and 6." << endl;
+            cout << "Invalid option. Please enter a number between 1 and 7." << endl;
         }
     }
     return 0;
