@@ -32,6 +32,7 @@ struct rNode{
         this->index = index;
         left = right = parent = NULL;
         this->color = RED;
+        friends = NULL;
     }
 };
 
@@ -53,6 +54,7 @@ class rbTree{
         void rotateRight(rNode *&root, rNode *&ptr);
         rNode* rbinsert(rNode *root, rNode *ptr); //inserts new node into red black tree
         void printRecord(int index);
+        string getString(); 
         void ListUserInfo(string name);
         void ListFriendsInfo(string name); //lists the name, age, occupation of name's friends
         void ListInfoHelper(string lown, string upn, rNode *root);

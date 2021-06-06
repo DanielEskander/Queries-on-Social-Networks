@@ -124,12 +124,14 @@ void rbTree::ListUserInfo(string name){
     if(list == NULL)
         return;
     printRecord(list->index);
+    cout << "\n";
 }
 
 void rbTree::ListFriendsInfo(string name){
     rNode *list = findHelper(name);
-    if(list == NULL)
+    if(list == NULL){
         return;
+    }
     while(list->friends != NULL){
         printRecord(findHelper(list->friends->name)->index);
         cout << "\n";
@@ -177,6 +179,11 @@ void rbTree::printHelper(rNode *root){
         return;
     printHelper(root->left);
     printRecord(root->index);
+    Node* temp = root->friends;
+    while(temp != NULL){
+        cout << temp->name << ",";
+        temp = temp->next;
+    }
     // if(root->left != NULL)
     //     printRecord(root->left->index);
     // if(root->right != NULL)

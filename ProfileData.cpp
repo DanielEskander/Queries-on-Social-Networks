@@ -9,6 +9,57 @@
 
 using namespace std;
 
+string rbTree::getString(){
+    ofstream output;
+    string s = "";
+    string getname;
+    char name[20] = "";
+    char age[3] = "";
+    char occupation[30] = "";
+    char temp1[21];
+    char temp2[4]; 
+    char temp3[31];
+    for(int i = 0; i < 21; i++){
+        temp1[i] = '\0';
+    }
+    for(int j = 0; j < 4; j++){
+        temp2[j] = '\0';
+    }
+    for(int k = 0; k < 31; k++){
+        temp3[k] = '\0';
+    }
+    cout << "Enter the user's name: " << endl;
+    cin.ignore();
+    s = "";
+    getline(cin, s);
+    for(int i = 0; i < s.length(); i++){
+         temp1[i] = s[i];
+    }
+    getname = s;
+    strncpy(name, temp1, 20);
+    temp1[0] = '\0';                    //please explain
+    cout << "Enter the user's age: " << endl;
+    cin >> temp2;
+    strncpy(age, temp2, 3);
+    temp2[0] = '\0';                    //please explain
+    cout << "Enter the user's occupation: " << endl;
+    cin.ignore();
+    s = "";
+    getline(cin, s);
+    for(int x = 0; x < s.length(); x++){
+        temp3[x] = s[x];
+    }
+    strncpy(occupation, temp3, 30);
+    temp2[0] = '\0'; 
+    output.open("ProfileData.txt", ofstream::app);
+    output << setfill(' ') << left
+        << setw(20) << name
+        << setw(3) << age 
+        << setw(30) << occupation
+        << endl;
+    output.close();
+    return getname;
+}
 
 void rbTree::printRecord(int index){
     string name, age, occupation;

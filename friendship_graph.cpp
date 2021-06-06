@@ -29,7 +29,7 @@ void rbTree::addFriend(string name1, string name2){
             }
             lastNode1 = lastNode1->next;
         }
-        if(lastNode1->next == NULL)
+        if(lastNode1->name != name2 && lastNode1->next == NULL)
         {
             Node *second = new Node(name2, NULL);
             lastNode1->next = second;
@@ -38,7 +38,8 @@ void rbTree::addFriend(string name1, string name2){
     if(add2->friends == NULL)
     {
         Node *first = new Node(name1, NULL);
-        add2->friends = first;  
+        add2->friends = first; 
+        
     }
     else
     {
@@ -51,7 +52,7 @@ void rbTree::addFriend(string name1, string name2){
             }
             lastNode2 = lastNode2->next;
         }
-        if(lastNode2->next == NULL)
+        if(lastNode2->name != name1 && lastNode2->next == NULL)
         {
             Node *first = new Node(name1, NULL);
             lastNode2->next = first;

@@ -1,25 +1,3 @@
-// #include <iostream>
-
-// #include "redblack_tree.h"
-
-// using namespace std;
-
-// int main(){
-//     rbTree tree;
-//     tree.insert("Dave", 1);
-//     tree.insert("Adam", 1);
-//     tree.insert("Even", 1);
-//     tree.insert("Ben", 1);
-//     tree.insert("Fre", 1);
-//     tree.insert("Cuz", 1);
-//     tree.addFriend("Dob", "Ben");
-//     tree.addFriend("Dave", "Fre");
-//     //tree.ListFriendsInfo("Dave");
-//     //tree.ListInfo("Adam", "Dave");
-//     tree.printAll();
-//     cout<<'\n';
-//     return 0;
-// }
 
 #include <iostream>
 #include <fstream>
@@ -61,14 +39,17 @@ int main(int argc, char *argv[]){
 
         net.insert(name, index++);
         getline(linestream,value, '\"');
+        getline(linestream,value, '\"');
         stringstream friends(value);
-        string add;
+        string add = ",";
+        if(value == "")
+            add == "";
         while(add != ""){
             getline(friends,add,',');
-            name2 = add;
+            if(add != "")
+                name2 = add;
             net.addFriend(name, name2);
         }
-        getline(linestream,value, '\"');
     };
     input.close();
     output.close();
@@ -86,61 +67,39 @@ int main(int argc, char *argv[]){
         cin >> choice;
 
         if(choice == 1) {
-            string s;
-            char name[20] = "";
-            char age[3] = "";
-            char occupation[30] = "";
-            char temp1[21];
-            char temp2[4];
-            char temp3[31];
-            cout << "Enter the user's name: " << endl;
-            getline(cin, s);
-            for(int i = 0; i < s.length(); i++){
-                temp1[i] = s[i];
-            }
-            strncpy(name, temp1, 20);
-            temp1[0] = '\0';                    //please explain
-            cout << "Enter the user's age: " << endl;
-            cin >> temp2;
-            strncpy(age, temp2, 3);
-            temp2[0] = '\0';                    //please explain
-            cout << "Enter the user's occupation: " << endl;
-            cin >> temp3;
-            strncpy(occupation, temp3, 30);
-    
-            output.open("ProfileData.txt", ofstream::app);
-            output << setfill(' ') << left
-                << setw(20) << name
-                << setw(3) << age 
-                << setw(30) << occupation
-                << endl;
-            output.close();
+            name = net.getString();
             net.insert(name, index++);
         }
         else if(choice == 2) {
-
             cout << "Enter the first user's name:" << endl;
+            cin.ignore();
             getline(cin, name);
             cout << "Enter the second user's name:" << endl;
+            cin.ignore();
             getline(cin, name2);
             net.addFriend(name, name2);
 
         }
         else if(choice == 3) {
             cout << "Enter user's name for search:" << endl;
+            cin.ignore();
             getline(cin, name);
             net.ListUserInfo(name);
         }
         else if(choice == 4) {
             cout << "Enter user's name for search:" << endl;
+            cin.ignore();
             getline(cin, name);
             net.ListFriendsInfo(name);
         }
         else if(choice == 5) {
             cout << "Enter start name for range search:" << endl;
+            cin.ignore();
             getline(cin, name);
             cout << "Enter stop name for range search:" << endl;
             getline(cin, name2);
+            cout << name << endl;
+            cout << name2 << endl;
             net.ListInfo(name, name2);
         }
         else if(choice == 6) {
