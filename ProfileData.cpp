@@ -61,7 +61,7 @@ string rbTree::getString(){
     return getname;
 }
 
-void rbTree::printRecord(int index){
+void rbTree::printRecord(int index, string rootName){
     string name, age, occupation;
     char *buffer= new char[20];
     char *buffer2 = new char[3];
@@ -93,7 +93,7 @@ void rbTree::printRecord(int index){
                 occupation += buffer3[k];
         }
     }
-    cout<< name << ",";
+    cout<< rootName << ",";
     cout<< age << ",";
     cout<< occupation << ",";
 

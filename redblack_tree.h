@@ -53,7 +53,7 @@ class rbTree{
         void rotateLeft(rNode *&root, rNode *&ptr);
         void rotateRight(rNode *&root, rNode *&ptr);
         rNode* rbinsert(rNode *root, rNode *ptr); //inserts new node into red black tree
-        void printRecord(int index);
+        void printRecord(int index, string rootName);
         string getString(); 
         void ListUserInfo(string name);
         void ListFriendsInfo(string name); //lists the name, age, occupation of name's friends
