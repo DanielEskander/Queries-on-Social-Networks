@@ -129,13 +129,14 @@ void rbTree::ListUserInfo(string name){
 
 void rbTree::ListFriendsInfo(string name){
     rNode *list = findHelper(name);
-    if(list == NULL){
+    Node *temp = list->friends;
+    if(list == NULL || temp == NULL){
         return;
     }
-    while(list->friends != NULL){
-        printRecord(findHelper(list->friends->name)->index, list->friends->name);
+    while(temp != NULL){
+        printRecord(findHelper(temp->name)->index, temp->name);
         cout << "\n";
-        list->friends = list->friends->next;
+        temp = temp->next;
     }
 }
 

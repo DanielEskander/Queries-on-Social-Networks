@@ -75,7 +75,6 @@ int main(int argc, char *argv[]){
             cin.ignore();
             getline(cin, name);
             cout << "Enter the second user's name:" << endl;
-            cin.ignore();
             getline(cin, name2);
             net.addFriend(name, name2);
 
@@ -98,8 +97,6 @@ int main(int argc, char *argv[]){
             getline(cin, name);
             cout << "Enter stop name for range search:" << endl;
             getline(cin, name2);
-            cout << name << endl;
-            cout << name2 << endl;
             net.ListInfo(name, name2);
         }
         else if(choice == 6) {
