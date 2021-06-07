@@ -9,6 +9,9 @@ using namespace std;
 void rbTree::addFriend(string name1, string name2){
     rNode *add1 = findHelper(name1);
     rNode *add2 = findHelper(name2);
+    if(strcmp(name1.c_str(), name2.c_str()) == 0){
+        return;
+    }
     if(add1 == NULL || add2 == NULL)
     {
         return;

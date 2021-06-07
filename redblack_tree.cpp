@@ -186,9 +186,9 @@ void rbTree::printHelper(rNode *root){
         temp = temp->next;
     }
     // if(root->left != NULL)
-    //     printRecord(root->left->index);
+    //     printRecord(root->left->index, root->left->name);
     // if(root->right != NULL)
-    //     printRecord(root->right->index);
+    //     printRecord(root->right->index, root->right->name);
     cout << "\n";
     printHelper(root->right);
 }
