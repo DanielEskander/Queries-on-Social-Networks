@@ -129,8 +129,11 @@ void rbTree::ListUserInfo(string name){
 
 void rbTree::ListFriendsInfo(string name){
     rNode *list = findHelper(name);
+    if (list == NULL){
+        return;
+    }
     Node *temp = list->friends;
-    if(list == NULL || temp == NULL){
+    if(temp == NULL){
         return;
     }
     while(temp != NULL){
