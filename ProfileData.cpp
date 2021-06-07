@@ -76,20 +76,26 @@ void rbTree::printRecord(int index){
     output.read(buffer3, 30);
     output.close();
     for(int i = 0; i < 20; i++){
-        if(buffer[i] != '\0')
-            name += buffer[i];
+        if(buffer[i] != '\0'){
+            if(!(i == 19 && buffer[i] == ' ' || (buffer[i] == ' ' && i < 19 && (buffer[i + 1] == ' ' || buffer[i + 1] == '\0'))))
+                name += buffer[i];
+        }
     }
     for(int j = 0; j < 3; j++){
-        if(buffer2[j] != '\0')
-            age += buffer2[j];
+        if(buffer2[j] != '\0'){
+            if(!(j == 2 && buffer2[j] == ' ' || (buffer2[j] == ' ' && j < 2 && (buffer2[j + 1] == ' ' || buffer2[j + 1] == '\0'))))
+                age += buffer2[j];
+        }
     }
     for(int k = 0; k < 30; k++){
-        if(buffer3[k] != '\0')
-            occupation += buffer3[k];
+        if(buffer3[k] != '\0'){
+            if(!(k == 29 && buffer3[k] == ' ' || (buffer3[k] == ' ' && k < 29 && (buffer3[k + 1] == ' ' || buffer3[k + 1] == '\0'))))
+                occupation += buffer3[k];
+        }
     }
     cout<< name << ",";
     cout<< age << ",";
-    cout<< occupation;
+    cout<< occupation << ",";
 
     delete[] buffer;
     delete[] buffer2;
