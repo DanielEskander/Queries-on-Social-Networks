@@ -63,6 +63,8 @@ class rbTree{
         rNode* find(rNode *root, string name);
         void printHelper(rNode *root);
         void printAll(); //prints name, age, occupation of all names in the red black tree
+        void printRbTreeHelper(rNode *root);
+        void printRbTree();
 };
 
 #endif

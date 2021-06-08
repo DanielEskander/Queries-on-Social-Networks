@@ -188,10 +188,6 @@ void rbTree::printHelper(rNode *root){
         cout << temp->name << ",";
         temp = temp->next;
     }
-    // if(root->left != NULL)
-    //     printRecord(root->left->index, root->left->name);
-    // if(root->right != NULL)
-    //     printRecord(root->right->index, root->right->name);
     cout << "\n";
     printHelper(root->right);
 }
@@ -200,6 +196,22 @@ void rbTree::printAll(){
     printHelper(this->root);
 }
 
+void rbTree::printRbTreeHelper(rNode *root){
+    if (root == NULL)
+        return;
+    printRbTreeHelper(root->left);
+    cout <<root->name << "," << root->color << ",";
+    if(root->left != NULL)
+        cout << root->left->name << ",";
+    if(root->right != NULL)
+        cout << root->right->name;
+    cout << "\n";
+    printRbTreeHelper(root->right);
+}
+
+void rbTree::printRbTree(){
+    printRbTreeHelper(this->root);
+}
 
 
 

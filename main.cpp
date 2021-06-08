@@ -54,7 +54,7 @@ int main(int argc, char *argv[]){
     input.close();
     output.close();
 
-    while (choice != 7) {
+    while (choice != 8) {
         cout << "Welcome to FriendNet! Please choose an option." << endl;
         cout << "1) Add a new user" << endl;
         cout << "2) Create a friendship" << endl;
@@ -62,7 +62,8 @@ int main(int argc, char *argv[]){
         cout << "4) Get a user's friends' profiles" << endl;
         cout << "5) Get a range of user profiles" << endl;
         cout << "6) Print the entire network of friends" << endl;
-        cout << "7) Exit FriendNet" << endl;
+        cout << "7) Print the entire red black tree" << endl;
+        cout << "8) Exit FriendNet" << endl;
 
         cin >> choice;
 
@@ -103,11 +104,14 @@ int main(int argc, char *argv[]){
             net.printAll();
         }
         else if(choice == 7) {
+            net.printRbTree();
+        }
+        else if(choice == 8) {
             cout << "Thank you for using FriendNet. Goodbye." << endl;
             break;
         }
         else {
-            cout << "Invalid option. Please enter a number between 1 and 7." << endl;
+            cout << "Invalid option. Please enter a number between 1 and 8." << endl;
         }
     }
     return 0;
