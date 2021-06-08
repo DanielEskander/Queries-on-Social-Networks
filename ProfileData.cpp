@@ -19,6 +19,7 @@ string rbTree::getString(){
     char temp1[21];
     char temp2[4]; 
     char temp3[31];
+    int spot = 0;
     for(int i = 0; i < 21; i++){
         temp1[i] = '\0';
     }
@@ -32,12 +33,13 @@ string rbTree::getString(){
     cin.ignore();
     s = "";
     getline(cin, s);
-    for(int i = 0; i < s.length(); i++){
-         temp1[i] = s[i];
+    for(int i = 0; i < 21; i++){
+        temp1[i] = s[i];
     }
-    getname = s;
     strncpy(name, temp1, 20);
-    temp1[0] = '\0';                    //please explain
+    for(int i = 0; i < 20; i++){
+        getname += name[i];
+    }
     cout << "Enter the user's age: " << endl;
     cin >> temp2;
     strncpy(age, temp2, 3);
