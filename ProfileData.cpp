@@ -13,9 +13,9 @@ string rbTree::getString(){
     ofstream output;
     string s = "";
     string getname;
-    char name[20] = "";
-    char age[3] = "";
-    char occupation[30] = "";
+    char name[21] = "";
+    char age[4] = "";
+    char occupation[31] = "";
     char temp1[21];
     char temp2[4]; 
     char temp3[31];
